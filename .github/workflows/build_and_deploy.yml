@@ -42,5 +42,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
           conda-channels: anaconda, conda-forge
 
+      - name: Install conda requirements
+        run: conda install anaconda conda-build
+
       - name: Build and test conda distribution
         run: conda build recipe
