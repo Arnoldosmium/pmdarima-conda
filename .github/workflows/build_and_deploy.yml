@@ -44,3 +44,4 @@ jobs:
 
       - run: conda --version
       - run: which python
+      - run: python --version
