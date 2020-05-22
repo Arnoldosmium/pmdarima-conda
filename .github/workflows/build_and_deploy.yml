@@ -35,13 +35,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Setup Conda
+      - name: Set up Conda
         uses: s-weigand/setup-conda@v1.0.3
         with:
           update-conda: true
           python-version: ${{ matrix.python-version }}
           conda-channels: anaconda, conda-forge
 
-      - run: conda --version
-      - run: which python
-      - run: python --version
+      - name: Build and test conda distribution
+        run: conda build recipe
