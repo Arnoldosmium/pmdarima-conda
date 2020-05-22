@@ -45,7 +45,7 @@ jobs:
 
       - name: Fix conda path on Windows
         if: matrix.os == 'windows-latest'
-        run: call C:\\Miniconda3\\Scripts\\activate
+        run: set PATH=%PATH%;C:\Miniconda\Library\bin
         shell: cmd
 
       - name: Install Conda requirements
