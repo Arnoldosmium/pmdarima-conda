@@ -43,6 +43,11 @@ jobs:
           python-version: ${{ matrix.python-version }}
           conda-channels: anaconda, conda-forge
 
+      - name: Fix conda path on Windows
+        if: matrix.os == 'windows-latest'
+        run: call C:\\Miniconda3\\Scripts\\activate
+        shell: cmd
+
       - name: Install conda requirements
         run: conda install anaconda conda-build
 
