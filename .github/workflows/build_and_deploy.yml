@@ -3,7 +3,7 @@ name: Conda Builds
 on:
   push:
     branches:
-      - 'actual-setup'
+      - '*'
     tags:
       - '*'
 
