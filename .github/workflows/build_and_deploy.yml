@@ -1,0 +1,46 @@
+name: Conda Builds
+
+on:
+  push:
+    branches:
+      - '*'
+    tags:
+      - '*'
+
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+        python-version: ['3.5', '3.6', '3.7', '3.8']
+        architecture: ['x86', 'x64']
+        exclude:
+          # Don't build 32-bit on Mac or Linux
+          - os: macos-latest
+            architecture: x86
+
+          - os: ubuntu-latest
+            architecture: x86
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      # This LOOKS like it is checking out 'master', but it is using the 'master' version of the checkout action
+      # It is actually checking out the most recent version on this branch
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Setup Conda
+        uses: s-weigand/setup-conda@v1.0.3
+        with:
+          update-conda: true
+          python-version: ${{ matrix.python-version }}
+          conda-channels: anaconda, conda-forge
+
+      - run: conda --version
+      - run: which python
