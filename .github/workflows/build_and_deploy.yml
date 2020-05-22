@@ -23,6 +23,7 @@ jobs:
           # Don't build 32-bit on Mac or Linux
           - os: macos-latest
             architecture: x86
+
           - os: ubuntu-latest
             architecture: x86
 
