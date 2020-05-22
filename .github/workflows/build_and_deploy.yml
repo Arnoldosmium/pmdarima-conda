@@ -48,8 +48,8 @@ jobs:
         run: call C:\\Miniconda3\\Scripts\\activate
         shell: cmd
 
-      - name: Install conda requirements
+      - name: Install Conda requirements
         run: conda install anaconda conda-build
 
-      - name: Build and test conda distribution
+      - name: Build and test Conda distribution
         run: conda build recipe
