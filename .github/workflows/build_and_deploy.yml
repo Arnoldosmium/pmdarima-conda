@@ -49,11 +49,11 @@ jobs:
 #        shell: cmd
 
       - name: Install Conda requirements
-        run: conda install anaconda conda-build
-
-      - name: Install extra Conda requirements for Windows
-        if: matrix.os == 'windows-latest'
-        run: conda install git m2-patch
+        run: |
+          conda install anaconda conda-build
+          if [ "${{ matrix.os }}" == "windows-latest" ]; then
+            conda install m2-patch posix
+          fi
 
       - name: Build and test Conda distribution
         run: conda build recipe
