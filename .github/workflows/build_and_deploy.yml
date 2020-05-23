@@ -54,6 +54,7 @@ jobs:
           if [ "${{ matrix.os }}" == "windows-latest" ]; then
             conda install m2-patch posix
           fi
+        shell: bash
 
       - name: Build and test Conda distribution
         run: conda build recipe
