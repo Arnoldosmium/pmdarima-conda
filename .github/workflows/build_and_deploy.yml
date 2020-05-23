@@ -52,6 +52,7 @@ jobs:
         run: conda install anaconda conda-build
 
       - name: Install extra Conda requirements for Windows
+        if: matrix.os == 'windows-latest'
         run: conda install git m2-patch
 
       - name: Build and test Conda distribution
